@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  template:
+    image: 'spring-boot-ci-jdk17:latest'
+    build:
+      context: .
+    container_name: template
+    environment:
+      - DATABASE_HOST=postgres14
+      - DATABASE_NAME=exampledb
+      - DATABASE_USER=application
+      - DATABASE_PASSWORD=lorenzo
+    networks:
+      - network-local-docker
+    ports:
+      - "8080:8080"
+
+networks:
+  network-local-docker:
+    external: true

@@ -1,0 +1,28 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:postgresql://${DATABASE_HOST:localhost:5432}/${DATABASE_NAME:exampledb}?createDatabaseIfNotExist=true
+    username: ${DATABASE_USER:application}
+    password: ${DATABASE_PASSWORD:lorenzo}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    database: POSTGRESQL
+
+logging:
+  level:
+    root: ERROR
+    org.springframework.web: ERROR
+    it.loooop.template: INFO
+    org.hibernate: ERROR
+  pattern:
+    console: "%d{dd-MM-yyyy HH:mm:ss.SSS} %thread ${PID} [%X{correlationId}] %-5level %logger{36} - %class{1} - %msg%n"
