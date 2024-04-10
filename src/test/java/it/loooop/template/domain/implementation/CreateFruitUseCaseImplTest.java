@@ -3,7 +3,7 @@ package it.loooop.template.domain.implementation;
 
 import it.loooop.template.application.ports.inbound.CreateFruitUseCase;
 import it.loooop.template.application.ports.outbound.FruitPersistencePort;
-import it.loooop.template.domain.implementation.testdatabuilder.FruitTestDataBuilder;
+import it.loooop.template.domain.implementation.testobjectmother.FruitTestObjectMother;
 import it.loooop.template.domain.model.Fruit;
 import org.junit.jupiter.api.Test;
 
@@ -19,13 +19,13 @@ public class CreateFruitUseCaseImplTest {
     @Test
     public void CreateFruitTest() {
         //GIVEN
-        when(fruitPersistencePort.saveFruit(FruitTestDataBuilder.aFruit())).thenReturn(FruitTestDataBuilder.aFruit());
+        when(fruitPersistencePort.saveFruit(FruitTestObjectMother.aFruit())).thenReturn(FruitTestObjectMother.aFruit());
 
         //WHEN
-        Fruit testFruit = createFruitUseCaseTest.createFruit(FruitTestDataBuilder.aFruit());
+        Fruit testFruit = createFruitUseCaseTest.createFruit(FruitTestObjectMother.aFruit());
 
         //THEN
-        assertEquals(FruitTestDataBuilder.aFruit(), testFruit);
+        assertEquals(FruitTestObjectMother.aFruit(), testFruit);
     }
 
 }

@@ -1,9 +1,9 @@
 package it.loooop.template.infrastructure.adapters.outbound.persistence;
 
-import it.loooop.template.domain.implementation.testdatabuilder.FruitTestDataBuilder;
+import it.loooop.template.domain.implementation.testobjectmother.FruitTestObjectMother;
 import it.loooop.template.domain.model.Fruit;
 import it.loooop.template.infrastructure.adapters.outbound.persistence.repository.FruitRepository;
-import it.loooop.template.infrastructure.adapters.outbound.persistence.testdatabuilder.FruitEntityTestDataBuilder;
+import it.loooop.template.infrastructure.adapters.outbound.persistence.testobjectmother.FruitEntityTestObjectMother;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
@@ -23,26 +23,26 @@ public class FruitPersistenceAdapterTest {
     @Test
     public void CreateFruitTest() {
         //GIVEN
-        when(fruitRepository.save(FruitEntityTestDataBuilder.aFruitEntity())).thenReturn(FruitEntityTestDataBuilder.aFruitEntity());
+        when(fruitRepository.save(FruitEntityTestObjectMother.aFruitEntity())).thenReturn(FruitEntityTestObjectMother.aFruitEntity());
 
         //WHEN
-        Fruit testFruit = fruitPersistenceAdapterTest.saveFruit(FruitTestDataBuilder.aFruit());
+        Fruit testFruit = fruitPersistenceAdapterTest.saveFruit(FruitTestObjectMother.aFruit());
 
         //THEN
-        assertEquals(FruitTestDataBuilder.aFruit(), testFruit);
+        assertEquals(FruitTestObjectMother.aFruit(), testFruit);
     }
 
     @Test
     public void GetFruitByIdTest() {
         //GIVEN
-        when(fruitRepository.findById(FRUIT_ID)).thenReturn(Optional.of(FruitEntityTestDataBuilder.aFruitEntity()));
+        when(fruitRepository.findById(FRUIT_ID)).thenReturn(Optional.of(FruitEntityTestObjectMother.aFruitEntity()));
 
         //WHEN
         Optional<Fruit> testFruit = fruitPersistenceAdapterTest.getFruitById(FRUIT_ID);
 
         //THEN
         assertTrue(testFruit.isPresent());
-        assertEquals(FruitTestDataBuilder.aFruit(), testFruit.get());
+        assertEquals(FruitTestObjectMother.aFruit(), testFruit.get());
     }
 
 }

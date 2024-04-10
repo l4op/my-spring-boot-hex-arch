@@ -2,13 +2,13 @@ package it.loooop.template.infrastructure.adapters.inbound.rest;
 
 import it.loooop.template.application.ports.inbound.CreateFruitUseCase;
 import it.loooop.template.application.ports.inbound.GetFruitUseCase;
-import it.loooop.template.domain.implementation.testdatabuilder.FruitTestDataBuilder;
+import it.loooop.template.domain.implementation.testobjectmother.FruitTestObjectMother;
 import it.loooop.template.infrastructure.adapters.inbound.rest.mapper.FruitRestMapper;
 import it.loooop.template.infrastructure.adapters.inbound.rest.response.CreateFruitResponse;
 import it.loooop.template.infrastructure.adapters.inbound.rest.response.GetFruitResponse;
-import it.loooop.template.infrastructure.adapters.inbound.rest.testdatabuilder.CreateFruitRequestTestDataBuilder;
-import it.loooop.template.infrastructure.adapters.inbound.rest.testdatabuilder.CreateFruitResponseTestDataBuilder;
-import it.loooop.template.infrastructure.adapters.inbound.rest.testdatabuilder.GetFruitResponseTestDataBuilder;
+import it.loooop.template.infrastructure.adapters.inbound.rest.testobjectmother.CreateFruitRequestTestObjectMother;
+import it.loooop.template.infrastructure.adapters.inbound.rest.testobjectmother.CreateFruitResponseTestObjectMother;
+import it.loooop.template.infrastructure.adapters.inbound.rest.testobjectmother.GetFruitResponseTestObjectMother;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
 import org.springframework.http.HttpStatus;
@@ -29,22 +29,22 @@ public class FruitRestAdapterTest {
     @Test
     public void createFruitTest() {
         //GIVEN
-        when(createFruitUseCase.createFruit(fruitRestMapper.toModel(CreateFruitRequestTestDataBuilder.aCreateFruitRequest()))).thenReturn(FruitTestDataBuilder.aFruit());
+        when(createFruitUseCase.createFruit(fruitRestMapper.toModel(CreateFruitRequestTestObjectMother.aCreateFruitRequest()))).thenReturn(FruitTestObjectMother.aFruit());
 
         //WHEN
-        ResponseEntity<CreateFruitResponse> testResponse = fruitRestAdapterTest.createFruit(CreateFruitRequestTestDataBuilder.aCreateFruitRequest());
+        ResponseEntity<CreateFruitResponse> testResponse = fruitRestAdapterTest.createFruit(CreateFruitRequestTestObjectMother.aCreateFruitRequest());
 
         //THEN
-        verify(createFruitUseCase, times(1)).createFruit(fruitRestMapper.toModel(CreateFruitRequestTestDataBuilder.aCreateFruitRequest()));
+        verify(createFruitUseCase, times(1)).createFruit(fruitRestMapper.toModel(CreateFruitRequestTestObjectMother.aCreateFruitRequest()));
         assertEquals(HttpStatus.CREATED, testResponse.getStatusCode());
         assertNotNull(testResponse.getBody());
-        assertEquals(CreateFruitResponseTestDataBuilder.aCreateFruitResponse(), testResponse.getBody());
+        assertEquals(CreateFruitResponseTestObjectMother.aCreateFruitResponse(), testResponse.getBody());
     }
 
     @Test
     public void getFruitTest() {
         //GIVEN
-        when(getFruitUseCase.getFruitById(FRUIT_ID)).thenReturn(FruitTestDataBuilder.aFruit());
+        when(getFruitUseCase.getFruitById(FRUIT_ID)).thenReturn(FruitTestObjectMother.aFruit());
 
         //WHEN
         ResponseEntity<GetFruitResponse> testResponse = fruitRestAdapterTest.getFruit(FRUIT_ID);
@@ -53,6 +53,6 @@ public class FruitRestAdapterTest {
         verify(getFruitUseCase, times(1)).getFruitById(FRUIT_ID);
         assertEquals(HttpStatus.OK, testResponse.getStatusCode());
         assertNotNull(testResponse.getBody());
-        assertEquals(GetFruitResponseTestDataBuilder.aGetFruitResponse(), testResponse.getBody());
+        assertEquals(GetFruitResponseTestObjectMother.aGetFruitResponse(), testResponse.getBody());
     }
 }

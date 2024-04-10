@@ -1,8 +1,8 @@
-package it.loooop.template.infrastructure.adapters.inbound.rest.testdatabuilder;
+package it.loooop.template.infrastructure.adapters.inbound.rest.testobjectmother;
 
 import it.loooop.template.infrastructure.adapters.inbound.rest.response.GetFruitResponse;
 
-public class GetFruitResponseTestDataBuilder {
+public class GetFruitResponseTestObjectMother {
 
     public static GetFruitResponse aGetFruitResponse() {
         return GetFruitResponse.builder()

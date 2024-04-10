@@ -3,7 +3,7 @@ package it.loooop.template.domain.implementation;
 import it.loooop.template.application.ports.inbound.GetFruitUseCase;
 import it.loooop.template.application.ports.outbound.FruitPersistencePort;
 import it.loooop.template.domain.exception.FruitNotFoundException;
-import it.loooop.template.domain.implementation.testdatabuilder.FruitTestDataBuilder;
+import it.loooop.template.domain.implementation.testobjectmother.FruitTestObjectMother;
 import it.loooop.template.domain.model.Fruit;
 
 import org.junit.jupiter.api.Test;
@@ -22,13 +22,13 @@ public class GetFruitUseCaseImplTest {
     @Test
     public void GetFruitByIdTest() {
         //GIVEN
-        when(fruitPersistencePort.getFruitById(FRUIT_ID)).thenReturn(Optional.of(FruitTestDataBuilder.aFruit()));
+        when(fruitPersistencePort.getFruitById(FRUIT_ID)).thenReturn(Optional.of(FruitTestObjectMother.aFruit()));
 
         //WHEN
         Fruit testFruit = getFruitUseCaseTest.getFruitById(FRUIT_ID);
 
         //THEN
-        assertEquals(FruitTestDataBuilder.aFruit(), testFruit);
+        assertEquals(FruitTestObjectMother.aFruit(), testFruit);
     }
 
     @Test

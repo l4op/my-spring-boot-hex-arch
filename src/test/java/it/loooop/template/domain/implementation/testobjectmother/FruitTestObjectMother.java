@@ -1,8 +1,8 @@
-package it.loooop.template.domain.implementation.testdatabuilder;
+package it.loooop.template.domain.implementation.testobjectmother;
 
 import it.loooop.template.domain.model.Fruit;
 
-public class FruitTestDataBuilder {
+public class FruitTestObjectMother {
     public static Fruit aFruit() {
         return Fruit.builder()
                 .id(1L)
